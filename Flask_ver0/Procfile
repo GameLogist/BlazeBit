@@ -1,0 +1,1 @@
+web: waitress-serve --call flask_blog:create_app --port=$PORT

@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+{% block content %}
+<article class="media content-section">
+    <img class="rounded-circle article-img"
+        src="{{ url_for('static', filename='profile_pics/' + model.model_author.image_file) }}">
+    <div class="media-body">
+        <div class="article-metadata">
+            <a class="mr-2" href="">{{ model.model_author.username }}</a>
+            <small class="text-muted">{{ model.date_posted.strftime('%Y-%m-%d') }}</small>
+            <h2 class="article-title">{{ model.name }}</h2>
+        </div>
+        <div>
+            <p>{{ model.description }}</p>
+        </div>
+        <!-- {% if model.model_author == current_user %}
+        <div>
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="">Update</a>
+            <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal"
+                data-target="#deleteModal2">Delete</button>
+        </div>
+        {% else %}
+        <div>
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" style="background-color:#4CAF50;color:white" href="">Buy</a>
+        </div>
+        {% endif %}
+        <div>
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" style="background-color:#4CAF50;color:white"
+                href="{{ url_for('models.test_model', model_id=model.id) }}">Test</a>
+        </div> -->
+        <div class="content-section">
+            <form method="POST" action="" enctype="multipart/form-data">
+                {{ form.hidden_tag() }}
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4">Test</legend>
+                    <div class="form-group">
+                        {{ form.test_file.label() }}
+                        {{ form.test_file(class="form-control-file") }}
+                        {% if form.test_file.errors %}
+                        {% for error in form.test_file.errors %}
+                        <span class="text-danger">{{ error }}</span></br>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </fieldset>
+                <div class="form-group">
+                    {{ form.submit(class="btn btn-outline-info", value="Process") }}
+                </div>
+            </form>
+        </div>
+    </div>
+</article>
+
+
+{% endblock content %}

@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  web:
+    restart: always
+    build: ./flask_blog
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      FLASK_ENV: development
+    command: python run.py 
